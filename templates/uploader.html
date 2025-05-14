@@ -1,0 +1,35 @@
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='style.css') }}"
+  type="text/css"
+/>
+
+{% extends "layout.html" %} {% block body %}
+<div style="text-align: center; margin-top: 20px">
+  <h2>File Uploaded Successfully!</h2>
+  <p>Your file has been uploaded.</p>
+
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %}
+  <ul class="flashes">
+    {% for category, message in messages %}
+    <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %} {% endwith %}
+
+  <form
+    action="{{ url_for('back_to_home') }}"
+    method="POST"
+    style="margin-top: 20px"
+  >
+    {# Assuming 'back_to_home' is your route #}
+    <input
+      type="submit"
+      name="back"
+      value="Back to Home Page"
+      class="btn btn-primary btn-large btn-block"
+    />
+  </form>
+</div>
+{% endblock %}
